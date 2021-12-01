@@ -40,13 +40,14 @@ module "loadbalancing" {
   elb_interval            = 30
   listener_port           = 80
   listener_protocol       = "HTTP"
+  tg_sg                   = module.networking.tg_sg
 }
 
 module "compute" {
   source              = "./compute"
   public_sg           = module.networking.public_sg
   public_subnets      = module.networking.public_subnets
-  instance_count      = 2
+  instance_count      = 1
   instance_type       = "t3.micro"
   vol_size            = 10
   key_name            = "mtckey1"
@@ -58,4 +59,5 @@ module "compute" {
   user_data_path      = "${path.root}/userdata.tpl"
   lb_target_group_arn = module.loadbalancing.lb_target_group_arn
   tg_sg               = module.networking.tg_sg
+  private_key_path    = "/home/ubuntu/.ssh/keymtc"
 }

@@ -3,7 +3,7 @@
 resource "aws_lb" "mtc_lb" {
   name            = "mtc-loadbalancer"
   subnets         = var.public_subnets
-  security_groups = [var.public_sg, var.http_sg]
+  security_groups = [var.public_sg, var.http_sg, var.tg_sg]
   idle_timeout    = 400
 }
 
@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "mtc_tg" {
     timeout             = var.elb_timeout
     interval            = var.elb_interval
   }
-  
+
   lifecycle {
     create_before_destroy = true
     ignore_changes        = [name]

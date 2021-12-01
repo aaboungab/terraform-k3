@@ -10,3 +10,4 @@ variable "elb_interval" {}
 variable "listener_port" {}
 variable "listener_protocol" {}
 variable "http_sg" {}
+variable "tg_sg" {}

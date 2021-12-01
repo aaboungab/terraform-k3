@@ -14,7 +14,7 @@ output "db_security_group" {
 }
 
 output "public_sg" {
-  value = aws_security_group.mtc_sg["ssh"].id
+  value = aws_security_group.mtc_sg["public"].id
 }
 
 output "tg_sg" {

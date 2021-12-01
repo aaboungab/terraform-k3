@@ -4,14 +4,14 @@ locals {
 
 locals {
   security_groups = {
-    ssh = {
+    public = {
       name        = "ssh_sg"
       description = "ssh access"
       ingress = {
-        ssh = {
-          from        = 22
-          to          = 22
-          protocol    = "tcp"
+        open = {
+          from        = 0
+          to          = 0
+          protocol    = -1
           cidr_blocks = [var.access_ip]
         }
       }
